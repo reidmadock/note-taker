@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const uuid = require('./helpers/uuid'); //credit to bootcamp for providing this helper function
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const app = express();
 
@@ -60,7 +60,6 @@ app.post('/api/notes', (req, res) => {
             body: newNote,
         };
 
-        console.log(response);
         res.status(201).json(response);
     } else {
         res.status(500).json('Error storing new note');
@@ -93,7 +92,6 @@ app.delete('/api/notes/:id', (req, res) => {
         };
 
         res.status(201).json(response);
-
     } else {
         res.status(500).json('Error deleting note');
     }
